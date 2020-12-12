@@ -1,25 +1,26 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
-import { uuid } from 'uuidv4';
+//import { uuid } from 'uuidv4';
 
 import Header from './components/Header';
+import ListItem from './components/ListItem';
 
 const App = () => {
     const [items, setItems] = useState([
         {
-            id: uuid(),
+            id: Math.floor(Math.random() * 100) + 1,
             text: 'Milk',
         },
         {
-            id: uuid(),
+            id: Math.floor(Math.random() * 100) + 1,
             text: 'Eggs',
         },
         {
-            id: uuid(),
+            id: Math.floor(Math.random() * 100) + 1,
             text: 'Bread',
         },
         {
-            id: uuid(),
+            id: Math.floor(Math.random() * 100) + 1,
             text: 'Juice',
         },
     ]);
@@ -30,7 +31,10 @@ const App = () => {
             <FlatList
                 data={items}
                 renderItem={({ item }) => (
-                    <Text>{item.text}</Text>
+                    <ListItem
+                        item={item}
+
+                    />
                 )} />
         </View>
     );
