@@ -1,21 +1,45 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { uuid } from 'uuidv4';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+import Header from './components/Header';
+
+const App = () => {
+    const [items, setItems] = useState([
+        {
+            id: uuid(),
+            text: 'Milk',
+        },
+        {
+            id: uuid(),
+            text: 'Eggs',
+        },
+        {
+            id: uuid(),
+            text: 'Bread',
+        },
+        {
+            id: uuid(),
+            text: 'Juice',
+        },
+    ]);
+
+    return (
+        <View style={styles.container}>
+            <Header title="Shopping List" />
+            <FlatList
+                data={items}
+                renderItem={({ item }) => (
+                    <Text>{item.text}</Text>
+                )} />
+        </View>
+    );
+};
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    container: {
+        flex: 1,
+    },
 });
+
+export default App;
